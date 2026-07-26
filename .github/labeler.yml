@@ -1,0 +1,6 @@
+# Basic configuration for PR labeler
+"documentation":
+  - "README.md"
+  - "GEMINI.md"
+"ci":
+  - ".github/workflows/**"
