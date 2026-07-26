@@ -101,7 +101,7 @@ pip install --trusted-host pypi.python.org -r requirements.txt
 ## Environment Variables Reference
 
 | Variable | Purpose | Default |
-|----------|---------|---------|
+|----------|---------|----------|
 | `DEBUG` | Enable debug mode | `False` |
 | `SECRET_KEY` | Flask secret key | `dev-key` |
 | `DATABASE_URL` | Database connection string | `sqlite:///db.sqlite3` |
