@@ -1,6 +1,267 @@
-# Basic configuration for PR labeler
-"documentation":
-  - "README.md"
-  - "GEMINI.md"
-"ci":
-  - ".github/workflows/**"
+# Labeler Configuration for MindsThatMatter
+# This file defines automatic PR labeling rules based on file patterns
+# Used by: .github/workflows/label.yml
+
+# ============================================================================
+# SKILLS & DOCUMENTATION LABELS
+# ============================================================================
+
+skill-docs:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/skills/**'
+
+insights:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/insights/**'
+
+agents-config:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'AGENTS.md'
+
+# ============================================================================
+# BACKEND LABELS
+# ============================================================================
+
+backend:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'app/**'
+          - 'src/backend/**'
+          - 'backend/**'
+          - '*.py'
+          - 'requirements.txt'
+          - 'requirements-*.txt'
+          - 'setup.py'
+          - 'pyproject.toml'
+
+api:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'app/api/**'
+          - 'src/backend/api/**'
+          - 'routes/**'
+
+database:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'app/models/**'
+          - 'src/backend/models/**'
+          - 'migrations/**'
+          - 'alembic/**'
+          - '*.sql'
+
+# ============================================================================
+# FRONTEND LABELS
+# ============================================================================
+
+frontend:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'ui/**'
+          - 'web/**'
+          - 'client/**'
+          - 'src/frontend/**'
+          - '*.jsx'
+          - '*.tsx'
+          - '*.js'
+          - '*.ts'
+          - 'package.json'
+          - 'package-lock.json'
+          - 'yarn.lock'
+
+# ============================================================================
+# ENVIRONMENT & DEPLOYMENT LABELS
+# ============================================================================
+
+docker:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'Dockerfile'
+          - 'docker-compose*.yml'
+          - '.dockerignore'
+
+infrastructure:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'terraform/**'
+          - 'kubernetes/**'
+          - 'helm/**'
+          - 'infra/**'
+
+ci-cd:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/workflows/**'
+          - '.github/actions/**'
+
+environment:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.env*'
+          - '.github/labeler.yml'
+          - '.github/dependabot.yml'
+
+# ============================================================================
+# TESTING LABELS
+# ============================================================================
+
+testing:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'tests/**'
+          - 'test/**'
+          - 'spec/**'
+          - '*_test.py'
+          - '*.test.js'
+          - '*.test.tsx'
+
+# ============================================================================
+# CONFIGURATION & BUILD LABELS
+# ============================================================================
+
+config:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'pyproject.toml'
+          - 'setup.py'
+          - 'setup.cfg'
+          - 'poetry.lock'
+          - 'Pipfile'
+          - 'tox.ini'
+          - '.editorconfig'
+
+build:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'Makefile'
+          - 'build/**'
+          - 'dist/**'
+          - 'release/**'
+
+# ============================================================================
+# DOCUMENTATION LABELS
+# ============================================================================
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '**.md'
+          - 'docs/**'
+          - 'CONTRIBUTING.md'
+          - 'CHANGELOG.md'
+          - 'README.md'
+          - 'GEMINI.md'
+
+# ============================================================================
+# SIZE LABELS (Based on PR scope)
+# ============================================================================
+
+size/xs:
+  - changed-files:
+      - base: ['1']
+
+size/small:
+  - changed-files:
+      - base: ['2..5']
+
+size/medium:
+  - changed-files:
+      - base: ['6..15']
+
+size/large:
+  - changed-files:
+      - base: ['16..50']
+
+size/xl:
+  - changed-files:
+      - base: ['51..999']
+
+# ============================================================================
+# SCOPE LABELS - Data Sovereignty Focus
+# ============================================================================
+
+data-sovereignty:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'src/**/data/**'
+          - 'app/**/privacy/**'
+          - 'app/**/encryption/**'
+
+privacy:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '**/privacy/**'
+          - '**/encryption/**'
+          - '**/*auth*'
+          - '**/*security*'
+
+monetization:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '**/billing/**'
+          - '**/pricing/**'
+          - '**/marketplace/**'
+
+# ============================================================================
+# PRIORITY LABELS (Manual or based on title patterns)
+# ============================================================================
+
+priority/critical:
+  - head-branch:
+      - 'hotfix/**'
+  - title-pattern: '(?i)critical|urgent|security'
+
+priority/high:
+  - head-branch:
+      - 'feature/**'
+  - title-pattern: '(?i)breaking|major'
+
+priority/low:
+  - title-pattern: '(?i)chore|refactor|minor'
+
+# ============================================================================
+# STATUS LABELS (Auto-applied, not for manual use)
+# ============================================================================
+
+status/ready-for-review:
+  - changed-files:
+      - base: ['1']  # Any PR has at least 1 changed file
+
+status/needs-testing:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'app/**'
+          - 'src/**'
+          - 'backend/**'
+          - 'frontend/**'
+
+# ============================================================================
+# TYPE LABELS
+# ============================================================================
+
+type/feature:
+  - head-branch:
+      - 'feature/**'
+  - title-pattern: '(?i)^feat'
+
+type/bugfix:
+  - head-branch:
+      - 'bugfix/**'
+      - 'fix/**'
+  - title-pattern: '(?i)^fix|^bugfix'
+
+type/refactor:
+  - title-pattern: '(?i)^refactor'
+
+type/chore:
+  - title-pattern: '(?i)^chore'
+
+type/docs:
+  - head-branch:
+      - 'docs/**'
+  - changed-files:
+      - all-globs-to-any-file:
+          - '**.md'
