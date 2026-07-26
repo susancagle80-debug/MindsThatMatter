@@ -15,7 +15,7 @@ When agents encounter and solve complex environment or setup problems, they:
 
 | Date | Problem | Severity | Status | Related Skill |
 |------|---------|----------|--------|---------------|
-| TBD | TBD | - | - | - |
+| 2026-07-26 | Backend Startup & Port Alignment | Low | Resolved | .github/skills/start-backend.md |
 
 ## Search by Tag
 
@@ -28,13 +28,14 @@ When agents encounter and solve complex environment or setup problems, they:
 - **configuration**: Configuration and environment issues
 - **development**: Development environment setup
 - **performance**: Performance optimization insights
+- **docker**: Docker and containerization issues
 
 ## File Naming Convention
 
 Format: `YYYY-MM-DD-problem-name.md`
 
 Examples:
-- `2026-07-26-flask-port-conflict.md`
+- `2026-07-26-backend-startup-port-alignment.md`
 - `2026-07-20-database-migration-failure.md`
 - `2026-07-15-missing-environment-variables.md`
 
@@ -84,5 +85,5 @@ Insights are kept indefinitely but can be:
 ---
 
 **Last Updated**: 2026-07-26  
-**Total Insights**: 0  
-**Tags in Use**: 0
+**Total Insights**: 1  
+**Tags in Use**: 10
